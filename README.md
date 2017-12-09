@@ -50,5 +50,8 @@ $ git push
 $ heroku create
 $ git push heroku master
 
+## Generate Static Pages Home and Help
+$ rails generate controller StaticPages home help
+
 For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
