@@ -53,5 +53,13 @@ $ git push heroku master
 ## Generate Static Pages Home and Help
 $ rails generate controller StaticPages home help
 
+##  good idea to add the files for the Static Pages controller to the remote repository:
+$ git add -A
+$ git commit -m "Add a Static Pages controller"
+$ git push -u origin static-pages
+
+
+##---------------------------------------------##
+
 For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
