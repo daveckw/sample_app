@@ -36,6 +36,14 @@ If the test suite passes, you'll be ready to run the app in a local server:
 ```
 $ rails server
 ```
+## Git Initialization
+
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/daveckw/sample_app.git
+git push -u origin master
+
 
 For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
