@@ -44,6 +44,11 @@ git commit -m "first commit"
 git remote add origin https://github.com/daveckw/sample_app.git
 git push -u origin master
 
+## Heroku Initialization
+$ git commit -am "Add hello"
+$ git push
+$ heroku create
+$ git push heroku master
 
 For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
