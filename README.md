@@ -58,6 +58,9 @@ $ git add -A
 $ git commit -m "Add a Static Pages controller"
 $ git push -u origin static-pages
 
+## Bcrypt 3.1.11 - Cannot load file on Windows
+I solve it with uninstall all bcrypt gem versions with gem uninstall bcrypt and select option 3 (if exist) and uninstall all bcrypt-ruby gem versions with gem uninstall bcrypt-ruby and select option 3 (if exist) then install bcrypt using gem install bcrypt --platform=ruby then add this line gem 'bcrypt', platforms: :ruby to Gemfile, that is it :D.
+
 
 ##---------------------------------------------##
 
