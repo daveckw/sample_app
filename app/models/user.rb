@@ -3,11 +3,16 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  name            :string
+#  admin           :boolean
 #  email           :string
+#  name            :string
+#  password_digest :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  password_digest :string
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
 #
 
 class User < ApplicationRecord
@@ -22,7 +27,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # Returns the hash digest of the given string.
     def User.digest(string)
@@ -30,5 +35,5 @@ class User < ApplicationRecord
                                                     BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
-    
+
 end
