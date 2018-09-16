@@ -2,14 +2,17 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  admin           :boolean
-#  email           :string
-#  name            :string
-#  password_digest :string
-#  remember_digest :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                :integer          not null, primary key
+#  activated         :boolean          default(FALSE)
+#  activated_at      :datetime
+#  activation_digest :string
+#  admin             :boolean          default(FALSE)
+#  email             :string
+#  name              :string
+#  password_digest   :string
+#  remember_digest   :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
@@ -17,8 +20,9 @@
 #
 
 class User < ApplicationRecord
-   attr_accessor :remember_token
-  before_save { self.email = email.downcase }
+  attr_accessor :remember_token, :activation_token
+  before_save :downcase_email
+  before_create :create_activation_digest
 
   validates :name, presence: true, length: { maximum: 50}
 
@@ -58,5 +62,26 @@ class User < ApplicationRecord
  def forget
    update_attribute(:remember_digest, nil)
  end
+
+ # Converts email to all lower-case.
+    def downcase_email
+      self.email = email.downcase
+    end
+
+    # Creates and assigns the activation token and digest.
+    def create_activation_digest
+      self.activation_token  = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
+
+    # Activates an account.
+  def activate
+    update_columns(activated: FILL_IN, activated_at: FILL_IN)
+  end
+
+  # Sends activation email.
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
 
 end
